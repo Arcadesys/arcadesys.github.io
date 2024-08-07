@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Talking Dice Roller</title>
+    <script src="dice.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>Talking Dice Roller</h1>
+
+    <div class="dice-buttons">
+        <div class="dice-button" onclick="addToDicePool('d4')">d4</div>
+        <div class="dice-button" onclick="addToDicePool('d6')">d6</div>
+        <div class="dice-button" onclick="addToDicePool('d8')">d8</div>
+        <div class="dice-button" onclick="addToDicePool('d10')">d10</div>
+        <div class="dice-button" onclick="addToDicePool('d12')">d12</div>
+        <div class="dice-button" onclick="addToDicePool('d20')">d20</div>
+        <div class="dice-button" onclick="addToIntegerField(1)">+1</div>
+    </div>
+
+    <div class="manual-entry">
+        <input type="text" id="diceInput" placeholder="Enter dice (e.g., 1d4+2d6)">
+        <input type="number" id="integerInput" placeholder="Enter integer (e.g., 3)">
+    </div>
+
+    <div class="buttons-container">
+        <button id="roll-button" class="roll-button" onclick="rollDice()">Roll</button>
+        <button class="clear-button" onclick="clearDice()">Clear</button>
+    </div>
+
+    <div class="result" id="result">Result: </div>
+
+   
+</body>
+</html>
