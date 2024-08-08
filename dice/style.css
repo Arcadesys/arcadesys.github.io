@@ -1,4 +1,6 @@
 body {
+    background-color: black;
+    color: white;
     font-family: Arial, sans-serif;
     display: flex;
     flex-direction: column;
@@ -7,6 +9,7 @@ body {
 }
 button, div {
     font-weight: bold;
+    color: black;
 }
 .dice-buttons {
     display: flex;
@@ -54,6 +57,7 @@ button, div {
     font-size: 30px;
     font-weight: bold;
     margin-top: 20px;
+    color: white;
     text-align: center;
 }
 .buttons-container {
