@@ -48,15 +48,15 @@ p {
 /* Twi's style */
 .twi-chat p {
     background-color: #096598;
-    align-self: flex-end;
 }
 
-.twi-chat span{
-align-self: flex-end;
+.twi-chat .message span {
+
 }
 
 .twi-chat {
     align-self: flex-end;
+    text-align: right;
 }
 
 /* Potts' style */
