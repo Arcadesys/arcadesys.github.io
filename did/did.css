@@ -1,0 +1,130 @@
+body {
+    font-family: Arial, sans-serif;
+    background: url("https://cdn.glitch.com/20540af7-c942-4351-9a89-cd33ee5c95a8%2Farcade.jpg?v=1608837796992");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.chat-container {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    max-width: 768px;
+    background-color: rgba(0,0,0,.5);
+    outline: 3px solid orange;
+}
+
+.chat-box {
+    display: flex;
+    margin-bottom: 20px;
+    align-items: flex-start; /* Fixed alignment issue */
+ 
+}
+
+.message-wrapper {
+    display: flex;
+    flex-direction: column;
+    max-width: 80%;
+}
+
+p {
+    padding: 10px 10px;
+   max-width: 400px;
+    border-radius: 20px;
+    background-color: #333333; /* Default background color */
+    line-height: 1.5;
+    word-wrap: break-word;
+    color: #ffffff;
+}
+
+/* Twi's style */
+.twi-chat p {
+    background-color: #096598;
+    align-self: flex-end;
+}
+
+.twi-chat span{
+align-self: flex-end;
+}
+
+.twi-chat {
+    align-self: flex-end;
+}
+
+/* Potts' style */
+.potts-chat p {
+    background-color: #e57615;
+    align-self: flex-start;
+}
+
+/* Sam's style */
+.sam-chat p  {
+    background-color: #600261;
+    align-self: flex-start;
+}
+
+/* Addie's style */
+.addie-chat p {
+    background-color: #e118b9;
+    align-self: flex-start;
+}
+
+/* Lucy's style */
+.lucy-chat p {
+    background-color: #e22b07;
+    align-self: flex-start;
+}
+
+/* Lilith's style */
+.lilith-chat p {
+    background-color: #070083;
+    align-self: flex-start;
+}
+
+/* Max's style */
+.max-chat p {
+    background-color: #024a03;
+    align-self: flex-start;
+}
+
+/* Vib's style */
+.vib-chat p {
+    background-color: #261c1f;
+    align-self: flex-start;
+}
+
+/* Shepard's style */
+.shepard-chat p {
+    background-color: #042a3e;
+    align-self: flex-start;
+}
+
+/* Tally's style */
+.tally-chat p {
+    background-color: #6a347b;
+    align-self: flex-start;
+}
+
+.avatar {
+    margin-right: 10px;
+    text-align: top;
+}
+
+.twi-chat .avatar img {
+    float: right;
+    margin-left: 10px; /* Add margin to separate the avatar from the text */
+}
+
+.avatar img {
+    border-radius: 50%;
+    width: 70px;
+    height: 70px; /* Fixed height value */
+}
