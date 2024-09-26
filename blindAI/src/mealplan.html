@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simplified Meal Planner</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+      padding: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input[type="number"], input[type="text"], textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 1em;
+    }
+
+    table {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .checkbox-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 1.2em;
+      color: white;
+      background-color: #4CAF50;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    #meal-plan-result {
+      margin-top: 20px;
+      padding: 20px;
+      border: 2px solid #ddd;
+      background-color: #f7f7f7;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Simplified Meal Planner</h1>
+
+  <!-- Meal Planning Form -->
+  <form id="mealForm">
+    <div class="form-group">
+      <label for="people">How many people are you cooking for?</label>
+      <input type="number" id="people" name="people" placeholder="Number of people" required>
+    </div>
+
+    <div class="form-group">
+      <label>Meal Planning Details:</label>
+      <table>
+        <tr>
+          <th>Meal Type</th>
+          <th>Meals to Cook</th>
+          <th>Meals to Eat</th>
+        </tr>
+        <tr>
+          <td>Breakfast</td>
+          <td><input type="number" id="cookBreakfasts" placeholder="e.g., 2"></td>
+          <td><input type="number" id="eatBreakfasts" placeholder="e.g., 5"></td>
+        </tr>
+        <tr>
+          <td>Lunch</td>
+          <td><input type="number" id="cookLunches" placeholder="e.g., 3"></td>
+          <td><input type="number" id="eatLunches" placeholder="e.g., 7"></td>
+        </tr>
+        <tr>
+          <td>Dinner</td>
+          <td><input type="number" id="cookDinners" placeholder="e.g., 4"></td>
+          <td><input type="number" id="eatDinners" placeholder="e.g., 7"></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="form-group">
+      <label>How do you prefer your meals?</label>
+      <div class="checkbox-group">
+        <label><input type="checkbox" id="easyMeals" name="mealPreference" value="Easy"> Easy</label>
+        <label><input type="checkbox" id="quickMeals" name="mealPreference" value="Quick"> Quick</label>
+        <label><input type="checkbox" id="noCookMeals" name="mealPreference" value="No Cook"> No Cook</label>
+        <label><input type="checkbox" id="bulkMeals" name="mealPreference" value="Bulk Cook"> Bulk Cook</label>
+      </div>
+      <input type="text" id="otherMealPreference" placeholder="Other preferences (please specify)">
+    </div>
+
+    <div class="form-group">
+      <label for="dietary">Do you have any dietary restrictions or preferences?</label>
+      <div class="checkbox-group">
+        <label><input type="checkbox" id="vegetarian" name="dietary" value="Vegetarian"> Vegetarian</label>
+        <label><input type="checkbox" id="vegan" name="dietary" value="Vegan"> Vegan</label>
+        <label><input type="checkbox" id="keto" name="dietary" value="Keto"> Keto</label>
+        <label><input type="checkbox" id="lowCarb" name="dietary" value="Low Carb"> Low Carb</label>
+        <label><input type="checkbox" id="diabetesFriendly" name="dietary" value="Diabetes Friendly"> Diabetes Friendly</label>
+        <label><input type="checkbox" id="glutenFree" name="dietary" value="Gluten-Free"> Gluten-Free</label>
+        <label><input type="checkbox" id="nutAllergy" name="dietary" value="Nut Allergy"> Nut Allergy</label>
+        <label><input type="checkbox" id="dairyFree" name="dietary" value="Dairy-Free"> Dairy-Free</label>
+      </div>
+      <input type="text" id="otherDietary" placeholder="Other dietary considerations (please specify)">
+    </div>
+
+    <div class="form-group">
+      <label for="ingredients">Are there any ingredients or leftovers you'd like to use?</label>
+      <textarea id="ingredients" placeholder="List any ingredients or leftovers"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="recipes">Any specific recipes or dishes you want to include?</label>
+      <textarea id="recipes" placeholder="Paste recipes, links, or ideas here"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="cookingFeel">Describe how you feel about cooking this week:</label>
+      <textarea id="cookingFeel" placeholder="E.g., excited, want quick meals, prefer minimal cooking"></textarea>
+    </div>
+
+    <button type="button" id="generateMealPlanButton">Generate Meal Plan</button>
+  </form>
+
+  <!-- Result Section -->
+  <div id="meal-plan-result">
+    <h2>Generated Meal Plan</h2>
+    <pre id="mealPlanOutput"></pre>
+  </div>
+
+  <script>
+    // JavaScript for handling form submission and fetching meal plan
+    document.getElementById("generateMealPlanButton").addEventListener("click", async function () {
+      // Collect form data
+      const numberOfPeople = document.getElementById("people").value;
+      const mealDetails = {
+        Breakfast: {
+          cook: document.getElementById("cookBreakfasts").value || 0,
+          eat: document.getElementById("eatBreakfasts").value || 0,
+        },
+        Lunch: {
+          cook: document.getElementById("cookLunches").value || 0,
+          eat: document.getElementById("eatLunches").value || 0,
+        },
+        Dinner: {
+          cook: document.getElementById("cookDinners").value || 0,
+          eat: document.getElementById("eatDinners").value || 0,
+        },
+      };
+
+      const dietaryRestrictions = [];
+      document.querySelectorAll("input[name='dietary']:checked").forEach(function (checkbox) {
+        dietaryRestrictions.push(checkbox.value);
+      });
+
+      const preferences = [];
+      document.querySelectorAll("input[name='mealPreference']:checked").forEach(function (checkbox) {
+        preferences.push(checkbox.value);
+      });
+
+      const ingredients = document.getElementById("ingredients").value;
+      const otherPreferences = document.getElementById("otherMealPreference").value;
+      if (otherPreferences) {
+        preferences.push(otherPreferences);
+      }
+
+      const data = {
+        numberOfPeople,
+        mealDetails,
+        dietaryRestrictions,
+        preferences,
+        ingredients,
+      };
+
+      // Send the form data to the server to get the meal plan
+      const response = await fetch("/mealplan", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      // Show the meal plan result
+      document.getElementById("meal-plan-result").style.display = "block";
+      document.getElementById("mealPlanOutput").textContent = result.mealPlan;
+    });
+  </script>
+</body>
+</html>
