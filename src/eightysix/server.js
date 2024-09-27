@@ -23,6 +23,9 @@ app.post('/api/openai', async (req, res) => {
   });
 });
 
+// Set dynamic path for stylesheet
+app.locals.stylePath = process.env.NODE_ENV === 'production' ? '/views/styles/style.css' : '/views/styles/style.css';
+
 // Start the server
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);

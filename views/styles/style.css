@@ -13,16 +13,11 @@
 }
 
 body {
-<<<<<<< HEAD
   background: url("https://cdn.glitch.com/20540af7-c942-4351-9a89-cd33ee5c95a8%2Farcade.jpg?v=1608837796992");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
-=======
-  background-color: var(--background-color);
-  background: url('https://cdn.glitch.me/20540af7-c942-4351-9a89-cd33ee5c95a8%2Farcade.jpg') fixed;
->>>>>>> 9bb4eb3411e5771b2ab28fda054571923a8ad01f
   color: var(--text-color);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   line-height: 1.6;
