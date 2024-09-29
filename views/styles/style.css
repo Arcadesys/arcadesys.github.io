@@ -10,6 +10,25 @@
   --text-color: #e5e5e7;
   --accent-color: #0a84ff;
   --neonpink: #ff6ec7;
+  --button-background: #1a3b5f; /* A duller version of the accent blue */
+}
+
+.button-link {
+  display: inline-block;
+  padding: 10px 15px;
+  color: var(--text-color);
+  background-color: var(--button-background);
+  text-decoration: none;
+  border-radius: 20px; /* Lozenge shape */
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  border: 2px solid var(--accent-color);
+}
+
+.button-link:hover {
+  background-color: var(--accent-color);
+  color: var(--background-color);
+  text-decoration: none;
+  border-color: var(--neonpink);
 }
 
 body {
@@ -22,6 +41,8 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   line-height: 1.6;
 }
+
+
 
 h1 {
   font-size: 2em;
@@ -60,7 +81,6 @@ div.intro, .austenbox, .arcadebox {
   color: var(--text-color);
   padding: 20px;
   border-radius: 8px;
-  font-family: "Press Start 2P";
 }
 
 #title {
@@ -98,23 +118,6 @@ a:hover {
   text-decoration: underline;
 }
 
-#menu {
-  display: grid;
-  grid-template-areas:
-    "header header faq"
-    "front front menu";
-  gap: 10px;
-}
-
-@media (max-width: 600px) {
-  #menu {
-    grid-template-areas:
-      "header"
-      "faq"
-      "front"
-      "menu";
-  }
-}
 
 .links {
   display: flex;
@@ -123,9 +126,6 @@ a:hover {
   margin-top: 20px;
 }
 
-.links a {
-  font-family: 'Press Start 2P', sans-serif;
-}
 
 .gallery {
   display: grid;
@@ -154,18 +154,15 @@ a:hover {
 }
 
 .buy-button {
-  display: inline-block;
-  padding: 5px 10px;
-  text-align: center;
   background-color: var(--accent-color);
-  color: #000;
-  text-decoration: none;
-  border-radius: 4px;
+  color: var(--background-color);
   margin-top: 10px;
+  border-color: var(--neonpink);
 }
 
 .buy-button:hover {
-  background-color: #57e3a5;
+  background-color: var(--neonpink);
+  border-color: var(--accent-color);
 }
 
 .item1 {
@@ -179,4 +176,20 @@ a:hover {
 }
 .item4 {
   grid-area: faq;
+}
+
+/* Add a new class for text links that shouldn't look like buttons */
+.text-link {
+  display: inline;
+  padding: 0;
+  background-color: transparent;
+  color: var(--accent-color);
+  border: none;
+}
+
+.text-link:hover {
+  background-color: transparent;
+  color: var(--neonpink);
+  text-decoration: underline;
+  border: none;
 }
